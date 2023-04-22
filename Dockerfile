@@ -5,7 +5,10 @@ RUN npm i -g pnpm
 WORKDIR /usr/src/app
 
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install 
+
+COPY prisma/schema.prisma ./prisma/
+RUN pnpx prisma generate
 
 COPY . .
 
